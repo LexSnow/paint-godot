@@ -6,4 +6,5 @@ extends Node
 signal color_change_requested(color: Color)
 ## Emits:
 ## Connects: PaintCanvas
-signal shape_selected(shape_type: Shape)
+signal shape_selected(shape_type: String)
+signal shape_clicked(shape: Shape)

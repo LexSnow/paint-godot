@@ -3,12 +3,12 @@ extends HBoxContainer
 	
 
 func _on_rectangle_pressed() -> void:
-	GlobalEventBus.shape_selected.emit(Rectangle.new())
+	GlobalEventBus.shape_selected.emit("Rectangle")
 
 
 func _on_circle_pressed() -> void:
-	GlobalEventBus.shape_selected.emit(Circle.new())
+	GlobalEventBus.shape_selected.emit("Circle")
 
 
 func _on_line_pressed() -> void:
-	GlobalEventBus.shape_selected.emit(Line.new())
+	GlobalEventBus.shape_selected.emit("Line")

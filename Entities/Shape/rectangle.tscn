@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn8x7in760y75"]
+
+[ext_resource type="PackedScene" uid="uid://f5ryhvj0jvqi" path="res://Entities/Shape/shape.tscn" id="1_abcde"]
+[ext_resource type="Script" path="res://Entities/Shape/rectangle.gd" id="2_fghij"]
+
+[node name="Rectangle" instance=ExtResource("1_abcde")]
+script = ExtResource("2_fghij")

@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1k2l3c1k2l3"]
+
+[ext_resource type="PackedScene" uid="uid://f5ryhvj0jvqi" path="res://Entities/Shape/shape.tscn" id="1_abcde"]
+[ext_resource type="Script" path="res://Entities/Shape/circle.gd" id="2_fghij"]
+
+[node name="Circle" instance=ExtResource("1_abcde")]
+script = ExtResource("2_fghij")

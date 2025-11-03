@@ -1,41 +1,60 @@
 extends Control
-## Singleton for managing paint_canvas
 
+const RectangleScene = preload("res://Entities/Shape/rectangle.tscn")
+const CircleScene = preload("res://Entities/Shape/circle.tscn")
+const LineScene = preload("res://Entities/Shape/line.tscn")
+
+var current_shape_scene: PackedScene = LineScene
 var is_drawing: bool = false
-var current_shape: Shape = null
+var current_shape_instance: Node2D = null
 var start_point: Vector2 = Vector2.ZERO
+var selected_shape: Node2D = null
 
 func _ready():
-	GlobalEventBus.shape_selected.connect(_on_shape_selected)
+	GlobalEventBus.shape_selected.connect(_on_shape_type_selected)
+	GlobalEventBus.shape_clicked.connect(_on_shape_clicked)
 
-func _on_shape_selected(shape: Shape):
-	current_shape = shape
+func _on_shape_type_selected(shape_type: String):
+	match shape_type:
+		"Rectangle":
+			current_shape_scene = RectangleScene
+		"Circle":
+			current_shape_scene = CircleScene
+		"Line":
+			current_shape_scene = LineScene
+
+func _on_shape_clicked(shape: Node2D):
+	if selected_shape:
+		selected_shape.deselect()
+	selected_shape = shape
+	selected_shape.select()
 
 func _input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			if event.is_pressed():
-				start_drawing(get_global_mouse_position())
-			else:
-				stop_drawing(get_global_mouse_position())
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.is_pressed():
+			start_drawing(get_global_mouse_position())
+		else: # Mouse button released
+			stop_drawing(get_global_mouse_position())
+
 	elif event is InputEventMouseMotion and is_drawing:
 		update_drawing(get_global_mouse_position())
 
-func start_drawing(_position: Vector2):
+func start_drawing(position: Vector2):
 	is_drawing = true
-	start_point = _position
+	start_point = position
 
-	if current_shape:
-		add_child(current_shape)
-		current_shape.update_shape([start_point, start_point])
+	if current_shape_scene:
+		current_shape_instance = current_shape_scene.instantiate()
+		add_child(current_shape_instance)
+		current_shape_instance.update_shape([start_point, start_point])
 
-func update_drawing(_position: Vector2):
-	if current_shape:
-		current_shape.update_shape([start_point, _position])
+func update_drawing(position: Vector2):
+	if current_shape_instance:
+		current_shape_instance.update_shape([start_point, position])
 
-func stop_drawing(_position: Vector2):
+func stop_drawing(position: Vector2):
 	if is_drawing:
 		is_drawing = false
-		if current_shape:
-			current_shape.update_shape([start_point, _position])
-			current_shape = null
+		if current_shape_instance:
+			current_shape_instance.update_shape([start_point, position])
+			current_shape_instance = null

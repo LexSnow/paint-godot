@@ -1,4 +1,4 @@
-@abstract class_name Shape
+class_name Shape
 extends Node2D
 ## Abstract class for drawable shapes
 
@@ -6,27 +6,52 @@ extends Node2D
 var color: Color = Color.BLACK
 
 ## The width of the stroke.
-var stroke_width: float = 1.0
+var stroke_width: float = 3.0
 
 ## The points that define the shape, in local coordinates.
 var points: PackedVector2Array = []
+var selected: bool = false
 
+@onready var area = $Area2D
+@onready var collision_shape = $Area2D/CollisionShape2D
 
 func _ready() -> void:
 	GlobalEventBus.color_change_requested.connect(_change_color)
-
+	
 func _change_color(_color: Color):
 	self.color = _color
 	queue_redraw()
-	 
 
-# This function is responsible for drawing the shape.
-# It should be overridden by subclasses.
+func _draw_shape():
+	pass
+	
+func _draw_selection():
+	pass
+
 func _draw():
+	_draw_shape()
+	if selected:
+		_draw_selection()
+
+
+func update_shape(new_points: PackedVector2Array):
+	points = new_points
+	update_collision_shape()
+	queue_redraw()
+
+func update_collision_shape():
+	# This method is overridden by subclasses
 	pass
 
 
-# Call this method to update the shape's geometry and redraw it.
-func update_shape(new_points: PackedVector2Array):
-	points = new_points
+func _on_area_2d_input_event(_viewport: Node, _event: InputEvent, _shape_idx: int) -> void:
+	if _event is InputEventMouseButton and _event.pressed and _event.button_index == MOUSE_BUTTON_LEFT:
+		_select()
+
+func _select() -> void:
+	selected = true
+	queue_redraw()
+	
+func _deselect():
+	selected = false
 	queue_redraw()
