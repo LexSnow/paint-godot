@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvx3ydjwu42dr"]
+
+[ext_resource type="PackedScene" uid="uid://cqh8klyvxqtia" path="res://Entities/Canvas/paint_canvas.tscn" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://5xhfdpvrfpwj" path="res://Entities/UI/ui_overlay.tscn" id="2_h2yge"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.13682577, 0.13682574, 0.13682571, 1)
+
+[node name="Main" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PaintContainer" type="MarginContainer" parent="Main/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 35
+theme_override_constants/margin_right = 35
+theme_override_constants/margin_bottom = 35
+
+[node name="PaintCanvas" parent="Main/HBoxContainer/PaintContainer" instance=ExtResource("1_0xm2m")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="UiContainer" type="MarginContainer" parent="Main/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 35
+theme_override_constants/margin_right = 35
+theme_override_constants/margin_bottom = 35
+
+[node name="UiOverlay" parent="Main/HBoxContainer/UiContainer" instance=ExtResource("2_h2yge")]
+layout_mode = 2
+size_flags_horizontal = 3

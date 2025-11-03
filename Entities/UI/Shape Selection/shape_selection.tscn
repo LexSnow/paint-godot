@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjhvvcjqd6nea"]
+
+[ext_resource type="Script" uid="uid://b46noly26x8iw" path="res://Entities/UI/Shape Selection/shape_selection.gd" id="1_sjnva"]
+[ext_resource type="Theme" uid="uid://cpqn62674apy" path="res://Assets/Themes/button.tres" id="1_vkihp"]
+
+[node name="ShapeSelection" type="HBoxContainer"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_sjnva")
+
+[node name="Rectangle" type="Button" parent="."]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("1_vkihp")
+text = "Rectangle"
+
+[node name="Circle" type="Button" parent="."]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("1_vkihp")
+text = "Circle"
+
+[node name="Line" type="Button" parent="."]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("1_vkihp")
+text = "Line"
+
+[connection signal="pressed" from="Rectangle" to="." method="_on_rectangle_pressed"]
+[connection signal="pressed" from="Circle" to="." method="_on_circle_pressed"]
+[connection signal="pressed" from="Line" to="." method="_on_line_pressed"]
