@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://5xhfdpvrfpwj"]
+[gd_scene load_steps=7 format=3 uid="uid://5xhfdpvrfpwj"]
 
+[ext_resource type="Script" uid="uid://ke55126ix8ub" path="res://Entities/UI/ui_container.gd" id="1_4t8ff"]
 [ext_resource type="PackedScene" uid="uid://cjhvvcjqd6nea" path="res://Entities/UI/Shape Selection/shape_selection.tscn" id="1_8q4l1"]
 [ext_resource type="PackedScene" uid="uid://bftdox7htpm8q" path="res://Entities/UI/Mode Selection/mode_selection.tscn" id="2_0y4xq"]
 [ext_resource type="PackedScene" uid="uid://c1u0fqioao04s" path="res://Entities/UI/Draw Selection/draw_selection.tscn" id="3_wj20q"]
@@ -11,7 +12,7 @@ custom_minimum_size = Vector2(335, 0)
 layout_mode = 3
 anchors_preset = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="UiContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,20 +20,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 19
+script = ExtResource("1_4t8ff")
 
-[node name="ShapeSelection" parent="VBoxContainer" instance=ExtResource("1_8q4l1")]
+[node name="ShapeSelection" parent="UiContainer" instance=ExtResource("1_8q4l1")]
 layout_mode = 2
 
-[node name="ModeSelection" parent="VBoxContainer" instance=ExtResource("2_0y4xq")]
+[node name="ModeSelection" parent="UiContainer" instance=ExtResource("2_0y4xq")]
 layout_mode = 2
 
-[node name="DrawSelection" parent="VBoxContainer" instance=ExtResource("3_wj20q")]
+[node name="DrawSelection" parent="UiContainer" instance=ExtResource("3_wj20q")]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="EditSelection" parent="VBoxContainer" instance=ExtResource("4_0vgpv")]
+[node name="EditSelection" parent="UiContainer" instance=ExtResource("4_0vgpv")]
 visible = false
 layout_mode = 2
 
-[node name="ColorSelection" parent="VBoxContainer" instance=ExtResource("5_oad1o")]
+[node name="ColorSelection" parent="UiContainer" instance=ExtResource("5_oad1o")]
 layout_mode = 2
