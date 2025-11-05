@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://bftdox7htpm8q"]
+
+[ext_resource type="Theme" uid="uid://cpqn62674apy" path="res://Assets/Themes/button.tres" id="1_b3tx0"]
+[ext_resource type="Script" uid="uid://7s3alh3v03xy" path="res://Entities/UI/Mode Selection/mode_selection.gd" id="1_jejhf"]
+[ext_resource type="ButtonGroup" uid="uid://bdjgjfuoycap2" path="res://Entities/UI/Mode Selection/mode_selection.tres" id="2_k15vu"]
+
+[node name="ModeSelection" type="VBoxContainer"]
+custom_minimum_size = Vector2(248, 0)
+offset_right = 52.0
+offset_bottom = 81.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_jejhf")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Modes"
+horizontal_alignment = 1
+
+[node name="Draw" type="Button" parent="."]
+layout_mode = 2
+theme = ExtResource("1_b3tx0")
+toggle_mode = true
+button_group = ExtResource("2_k15vu")
+text = "Draw"
+
+[node name="Edit" type="Button" parent="."]
+layout_mode = 2
+theme = ExtResource("1_b3tx0")
+toggle_mode = true
+button_group = ExtResource("2_k15vu")
+text = "Edit"
+
+[connection signal="pressed" from="Draw" to="." method="_on_draw_pressed"]
+[connection signal="pressed" from="Edit" to="." method="_on_edit_pressed"]

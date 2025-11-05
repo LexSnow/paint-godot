@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 GlobalEventBus="*res://Global/EventBus/GlobalEventBus.gd"
 
+[global_group]
+
+cmyk_sliders=""
+rgb_sliders=""
+
 [run]
 
 main_scene="res://scenes/main.tscn"

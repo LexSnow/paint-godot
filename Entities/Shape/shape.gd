@@ -16,14 +16,9 @@ var selected: bool = false
 @onready var collision_shape = $Area2D/CollisionShape2D
 
 func _ready() -> void:
-	GlobalEventBus.color_change_requested.connect(_change_color)
-	
-func _change_color(_color: Color):
-	self.color = _color
-	queue_redraw()
-
-func _draw_shape():
 	pass
+
+func _draw_shape():	pass
 	
 func _draw_selection():
 	pass

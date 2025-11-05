@@ -9,10 +9,15 @@ var is_drawing: bool = false
 var current_shape_instance: Node2D = null
 var start_point: Vector2 = Vector2.ZERO
 var selected_shape: Node2D = null
+var current_color: Color = Color.BLACK
 
 func _ready():
 	GlobalEventBus.shape_selected.connect(_on_shape_type_selected)
 	GlobalEventBus.shape_clicked.connect(_on_shape_clicked)
+	GlobalEventBus.color_change_requested.connect(_on_color_change_requested)
+
+func _on_color_change_requested(color: Color):
+	current_color = color
 
 func _on_shape_type_selected(shape_type: String):
 	match shape_type:
@@ -32,12 +37,12 @@ func _on_shape_clicked(shape: Node2D):
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.is_pressed():
-			start_drawing(get_global_mouse_position())
+			start_drawing(get_local_mouse_position())
 		else: # Mouse button released
-			stop_drawing(get_global_mouse_position())
+			stop_drawing(get_local_mouse_position())
 
 	elif event is InputEventMouseMotion and is_drawing:
-		update_drawing(get_global_mouse_position())
+		update_drawing(get_local_mouse_position())
 
 func start_drawing(position: Vector2):
 	is_drawing = true
@@ -45,6 +50,7 @@ func start_drawing(position: Vector2):
 
 	if current_shape_scene:
 		current_shape_instance = current_shape_scene.instantiate()
+		current_shape_instance.color = current_color
 		add_child(current_shape_instance)
 		current_shape_instance.update_shape([start_point, start_point])
 

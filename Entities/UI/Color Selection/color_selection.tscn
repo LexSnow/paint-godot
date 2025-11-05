@@ -1,0 +1,154 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhpclxytcpev"]
+
+[ext_resource type="Script" uid="uid://ba1femyallpso" path="res://Entities/UI/Color Selection/color_preview.gd" id="2_le1c0"]
+[ext_resource type="Script" uid="uid://bhqgo10ixfhei" path="res://Entities/UI/Color Selection/color_option.gd" id="2_ukxs7"]
+[ext_resource type="Script" uid="uid://c08y0375qpgr1" path="res://Entities/UI/Color Selection/slider_line_connector.gd" id="2_y3h2b"]
+
+[node name="ColorSelection" type="VBoxContainer"]
+custom_minimum_size = Vector2(335, 0)
+offset_right = 335.0
+offset_bottom = 140.0
+
+[node name="ColorLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Color options"
+horizontal_alignment = 1
+
+[node name="ColorContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+script = ExtResource("2_le1c0")
+
+[node name="ColorRect" type="ColorRect" parent="ColorContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorOption" type="VBoxContainer" parent="ColorContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_ukxs7")
+
+[node name="OptionButton" type="OptionButton" parent="ColorContainer/ColorOption"]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "RGB"
+popup/item_0/id = 0
+popup/item_1/text = "CMYK"
+popup/item_1/id = 1
+
+[node name="RGBSliders" type="VBoxContainer" parent="ColorContainer/ColorOption"]
+layout_mode = 2
+
+[node name="RContainer" type="HBoxContainer" parent="ColorContainer/ColorOption/RGBSliders" node_paths=PackedStringArray("slider", "line_edit") groups=["rgb_sliders"]]
+layout_mode = 2
+script = ExtResource("2_y3h2b")
+slider = NodePath("RSlider")
+line_edit = NodePath("RText")
+
+[node name="RSlider" type="HSlider" parent="ColorContainer/ColorOption/RGBSliders/RContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 255.0
+
+[node name="RText" type="LineEdit" parent="ColorContainer/ColorOption/RGBSliders/RContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="GContainer" type="HBoxContainer" parent="ColorContainer/ColorOption/RGBSliders" node_paths=PackedStringArray("slider", "line_edit") groups=["rgb_sliders"]]
+layout_mode = 2
+script = ExtResource("2_y3h2b")
+slider = NodePath("GSlider")
+line_edit = NodePath("GText")
+
+[node name="GSlider" type="HSlider" parent="ColorContainer/ColorOption/RGBSliders/GContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 255.0
+
+[node name="GText" type="LineEdit" parent="ColorContainer/ColorOption/RGBSliders/GContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="BContainer" type="HBoxContainer" parent="ColorContainer/ColorOption/RGBSliders" node_paths=PackedStringArray("slider", "line_edit") groups=["rgb_sliders"]]
+layout_mode = 2
+script = ExtResource("2_y3h2b")
+slider = NodePath("BSlider")
+line_edit = NodePath("BText")
+
+[node name="BSlider" type="HSlider" parent="ColorContainer/ColorOption/RGBSliders/BContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 255.0
+
+[node name="BText" type="LineEdit" parent="ColorContainer/ColorOption/RGBSliders/BContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="CMYKSliders" type="VBoxContainer" parent="ColorContainer/ColorOption"]
+visible = false
+layout_mode = 2
+
+[node name="CContainer" type="HBoxContainer" parent="ColorContainer/ColorOption/CMYKSliders" node_paths=PackedStringArray("slider", "line_edit") groups=["cmyk_sliders"]]
+layout_mode = 2
+script = ExtResource("2_y3h2b")
+slider = NodePath("CSlider")
+line_edit = NodePath("CText")
+
+[node name="CSlider" type="HSlider" parent="ColorContainer/ColorOption/CMYKSliders/CContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="CText" type="LineEdit" parent="ColorContainer/ColorOption/CMYKSliders/CContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="MContainer" type="HBoxContainer" parent="ColorContainer/ColorOption/CMYKSliders" node_paths=PackedStringArray("slider", "line_edit") groups=["cmyk_sliders"]]
+layout_mode = 2
+script = ExtResource("2_y3h2b")
+slider = NodePath("MSlider")
+line_edit = NodePath("MText")
+
+[node name="MSlider" type="HSlider" parent="ColorContainer/ColorOption/CMYKSliders/MContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+
+[node name="MText" type="LineEdit" parent="ColorContainer/ColorOption/CMYKSliders/MContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="YContainer" type="HBoxContainer" parent="ColorContainer/ColorOption/CMYKSliders" node_paths=PackedStringArray("slider", "line_edit") groups=["cmyk_sliders"]]
+layout_mode = 2
+script = ExtResource("2_y3h2b")
+slider = NodePath("YSlider")
+line_edit = NodePath("YText")
+
+[node name="YSlider" type="HSlider" parent="ColorContainer/ColorOption/CMYKSliders/YContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="YText" type="LineEdit" parent="ColorContainer/ColorOption/CMYKSliders/YContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="KContainer" type="HBoxContainer" parent="ColorContainer/ColorOption/CMYKSliders" node_paths=PackedStringArray("slider", "line_edit") groups=["cmyk_sliders"]]
+layout_mode = 2
+script = ExtResource("2_y3h2b")
+slider = NodePath("KSlider")
+line_edit = NodePath("KText")
+
+[node name="KSlider" type="HSlider" parent="ColorContainer/ColorOption/CMYKSliders/KContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="KText" type="LineEdit" parent="ColorContainer/ColorOption/CMYKSliders/KContainer"]
+layout_mode = 2
+text = "0"
+
+[connection signal="item_selected" from="ColorContainer/ColorOption/OptionButton" to="ColorContainer/ColorOption" method="_on_option_button_item_selected"]

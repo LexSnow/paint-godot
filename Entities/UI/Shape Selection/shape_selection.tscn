@@ -1,31 +1,54 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjhvvcjqd6nea"]
+[gd_scene load_steps=4 format=3 uid="uid://cjhvvcjqd6nea"]
 
 [ext_resource type="Script" uid="uid://b46noly26x8iw" path="res://Entities/UI/Shape Selection/shape_selection.gd" id="1_sjnva"]
 [ext_resource type="Theme" uid="uid://cpqn62674apy" path="res://Assets/Themes/button.tres" id="1_vkihp"]
+[ext_resource type="ButtonGroup" uid="uid://cp0yom6iv7f0h" path="res://Entities/UI/Shape Selection/shape_selection.tres" id="3_vhrxa"]
 
-[node name="ShapeSelection" type="HBoxContainer"]
+[node name="ShapeSelection" type="VBoxContainer"]
+custom_minimum_size = Vector2(248, 0)
+offset_right = 248.0
+offset_bottom = 73.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 10
 script = ExtResource("1_sjnva")
 
-[node name="Rectangle" type="Button" parent="."]
-custom_minimum_size = Vector2(80, 0)
+[node name="Label" type="Label" parent="."]
 layout_mode = 2
+text = "Shapes"
+horizontal_alignment = 1
+
+[node name="Buttons" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Rectangle" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("1_vkihp")
+toggle_mode = true
+button_group = ExtResource("3_vhrxa")
 text = "Rectangle"
 
-[node name="Circle" type="Button" parent="."]
+[node name="Circle" type="Button" parent="Buttons"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("1_vkihp")
+toggle_mode = true
+button_group = ExtResource("3_vhrxa")
 text = "Circle"
 
-[node name="Line" type="Button" parent="."]
+[node name="Line" type="Button" parent="Buttons"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("1_vkihp")
+toggle_mode = true
+button_group = ExtResource("3_vhrxa")
 text = "Line"
 
-[connection signal="pressed" from="Rectangle" to="." method="_on_rectangle_pressed"]
-[connection signal="pressed" from="Circle" to="." method="_on_circle_pressed"]
-[connection signal="pressed" from="Line" to="." method="_on_line_pressed"]
+[connection signal="pressed" from="Buttons/Rectangle" to="." method="_on_rectangle_pressed"]
+[connection signal="pressed" from="Buttons/Circle" to="." method="_on_circle_pressed"]
+[connection signal="pressed" from="Buttons/Line" to="." method="_on_line_pressed"]

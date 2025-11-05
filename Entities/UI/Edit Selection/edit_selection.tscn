@@ -1,0 +1,71 @@
+[gd_scene load_steps=4 format=3 uid="uid://7qqe7ilti71h"]
+
+[ext_resource type="Script" uid="uid://sgylgvb1yt11" path="res://Entities/UI/Edit Selection/edit_selection.gd" id="1_lidup"]
+[ext_resource type="Theme" uid="uid://cpqn62674apy" path="res://Assets/Themes/button.tres" id="1_lkr88"]
+[ext_resource type="ButtonGroup" uid="uid://c871pylpsqvcv" path="res://Entities/UI/Edit Selection/edit_selection.tres" id="2_jodxg"]
+
+[node name="EditSelection" type="VBoxContainer"]
+custom_minimum_size = Vector2(335, 0)
+script = ExtResource("1_lidup")
+
+[node name="EditLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Edit options"
+horizontal_alignment = 1
+
+[node name="Text" type="Button" parent="."]
+layout_mode = 2
+theme = ExtResource("1_lkr88")
+toggle_mode = true
+button_group = ExtResource("2_jodxg")
+text = "Text"
+
+[node name="TextContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="x1" type="LineEdit" parent="TextContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+placeholder_text = "x1"
+alignment = 1
+
+[node name="x2" type="LineEdit" parent="TextContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+placeholder_text = "x2"
+alignment = 1
+
+[node name="y1" type="LineEdit" parent="TextContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+placeholder_text = "y1"
+alignment = 1
+
+[node name="y2" type="LineEdit" parent="TextContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+placeholder_text = "y2"
+alignment = 1
+
+[node name="radius" type="LineEdit" parent="TextContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+placeholder_text = "radius"
+alignment = 1
+
+[node name="Update" type="Button" parent="TextContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme = ExtResource("1_lkr88")
+text = "Update"
+
+[node name="Interactive" type="Button" parent="."]
+layout_mode = 2
+theme = ExtResource("1_lkr88")
+toggle_mode = true
+text = "Interactive"
+
+[connection signal="toggled" from="Text" to="." method="_on_text_toggled"]
+[connection signal="pressed" from="Interactive" to="." method="_on_interactive_pressed"]
