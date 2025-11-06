@@ -37,9 +37,12 @@ func _on_shape_clicked(shape: Node2D):
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.is_pressed():
-			start_drawing(get_local_mouse_position())
+			var mouse_pos = get_local_mouse_position()
+			if get_rect().has_point(mouse_pos):
+				start_drawing(mouse_pos)
 		else: # Mouse button released
-			stop_drawing(get_local_mouse_position())
+			if is_drawing:
+				stop_drawing(get_local_mouse_position())
 
 	elif event is InputEventMouseMotion and is_drawing:
 		update_drawing(get_local_mouse_position())
