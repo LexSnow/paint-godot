@@ -21,6 +21,7 @@ script = ExtResource("2_le1c0")
 [node name="ColorRect" type="ColorRect" parent="ColorContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+color = Color(0, 0, 0, 1)
 
 [node name="ColorOption" type="VBoxContainer" parent="ColorContainer"]
 layout_mode = 2

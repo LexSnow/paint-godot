@@ -4,8 +4,7 @@ extends VBoxContainer
 @onready var rgb_sliders: VBoxContainer = $RGBSliders
 @onready var cmyk_sliders: VBoxContainer = $CMYKSliders
 
-var current_color: Color = Color(1, 1, 1)
-
+var current_color: Color = Color(0, 0, 0)
 func _ready() -> void:
 	_toggle_color_mode(option_button.get_selected_id())
 	for slider in get_tree().get_nodes_in_group("rgb_sliders"):
@@ -22,7 +21,6 @@ func _toggle_color_mode(index: int) -> void:
 	cmyk_sliders.visible = not rgb_mode
 
 	if rgb_mode:
-		_convert_cmyk_to_rgb()
 		_set_rgb_sliders_from_color()
 	else:
 		var cmyk = _rgb_to_cmyk(current_color)
